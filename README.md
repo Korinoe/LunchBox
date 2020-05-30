@@ -21,6 +21,6 @@ Hopeful time of completion to be July 20th
 * Database to Store Recipes
 
 ## Links to Pages
-Main Page: http://www.pages.drexel.edu/~ch942/lunchbox-main.html
-About Us: http://www.pages.drexel.edu/~ch942/aboutus.html
-Recipe Page: http://www.pages.drexel.edu/~ch942/recipe.html
+[Main Page](http://www.pages.drexel.edu/~ch942/lunchbox-main.html)
+[About Us](http://www.pages.drexel.edu/~ch942/aboutus.html)
+[Recipe Page](http://www.pages.drexel.edu/~ch942/recipe.html)

@@ -1,0 +1,258 @@
+<html>
+<head>
+  <link rel="stylesheet" href="demo-2.css">
+  <script src ="demo.js"></script>
+  <script src="//static.codepen.io/assets/common/stopExecutionOnTimeout-b2a7b3fe212eaa732349046d8416e00a9dec26eb7fd347590fbced3ab38af52e.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-animate.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-aria.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/angular_material/1.0.0/angular-material.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/2.4.1/lodash.js"></script>
+  <script>
+    (function(){
+      'use strict'
+      angular.module('angularDemo', ['ngMaterial']); //initialize module
+
+      //can reference model instead of creating a global variable
+      angular.module('angularDemo').controller('angularController',
+                                               ['$scope','ProductDataService', function($scope, ProductDataService) {
+        var products = ProductDataService.getSampleData();
+        $scope.Fruits = products; //use $scope to expose to the view
+
+        //create checkbox filters on the fly with dynamic data
+        var filters = [];
+        _.each(products, function(product) {
+          _.each(product.properties, function(property) {
+            var existingFilter = _.findWhere(filters, { name: property.name });
+
+            if (existingFilter) {
+              var existingOption = _.findWhere(existingFilter.options, { value: property.value });
+              if (existingOption) {
+                existingOption.count += 1;
+              } else {
+                existingFilter.options.push({ value: property.value, count: 1 });
+              }
+            } else {
+              var filter = {};
+              filter.name = property.name;
+              filter.options = [];
+              filter.options.push({ value: property.value, count: 1 });
+              filters.push(filter);
+            }
+          });
+        });
+        $scope.Filters = filters;
+
+        this.toggleAll = function($event, includeAll) {
+          _.each(filters, function(filterCategory) {
+            _.each(filterCategory.options, function(option) {
+              option.IsIncluded = includeAll;
+            });
+          });
+        };
+      }]);
+
+      angular.module('angularDemo').filter('dynamicFilter', function () {
+        return function (products, filterCategories, scope) {
+          var filtered = [];
+
+          var productFilters = _.filter(filterCategories, function(fc) {
+            return  _.any(fc.options, { 'IsIncluded': true });
+          });
+
+          _.each(products, function(prod) {
+            var includeProduct = true;
+            _.each(productFilters, function(filter) {
+              var props = _.filter(prod.properties, { 'name': filter.name });
+              if (!_.any(props, function(prop) { return _.any(filter.options, { 'value': prop.value, 'IsIncluded': true }); })) {
+                includeProduct = false;
+              }
+            });
+            if (includeProduct) {
+              filtered.push(prod);
+            }
+          });
+          return filtered;
+        };
+      });
+
+      angular.module('angularDemo').service('ProductDataService', function() {
+        var service = {};
+
+        //sample data
+        var products = [
+          {
+            name: 'Mac & Cheese',
+            url: 'https://www.southernliving.com/recipes/classic-baked-macaroni-and-cheese-recipe',
+            properties: [
+              { name:'Starch', value:'Noodles'}, { name:'Dairy', value:'Cheese'},
+              { name:'Dairy', value:'Milk'}
+            ]
+          },{
+            name: 'Bacon Wrap',
+            url: 'https://www.foodnetwork.com/recipes/articles/50-bacon-appetizers',
+            properties: [
+              { name:'Starch', value:'Tortilla' }, { name:'Protein', value:'Bacon'},
+              { name:'Protein', value:'Beef' }, { name:'Dairy', value:'Cheese'}
+            ]
+          },{
+            name: 'Beef Tacos',
+            url: 'https://www.oldelpaso.com/recipes/simple-beef-tacos',
+            properties: [
+              { name:'Starch', value:'Tortilla' }, { name:'Protein', value:'Beef' },
+              { name:'Seasoning', value:'Taco Mix' }
+            ]
+          },{
+            name: 'Fettucine Alfredo',
+            url: 'https://juliasalbum.com/creamy-broccoli-chicken-and-bacon-pasta-recipe/',
+            properties: [
+              { name:'Starch', value:'Noodles' }, { name:'Dairy', value:'Milk' },
+              { name:'Dairy', value:'Heavy Cream' }, { name:'Dairy', value:'Chese' },
+              { name:'Veggie', value:'Broccoli'}, { name: 'Protein', value: 'Bacon'},
+              { name:'Veggie', value: 'Garlic'}, {name: 'Seasoning', value: 'Salt + Pepper'},
+              { name:'Protein', value: 'Chicken'}
+            ]
+          },{
+            name: 'Apple Squares',
+            url: 'https://juliasalbum.com/apple-squares-recipe/',
+            properties: [
+              { name:'Fruit', value:'Apples' }, { name: 'Seasoning', value: 'Cinammon' },
+              { name:'Starch', value:'AP Flour' }, { name: 'Protein', value: 'Eggs' },
+
+            ]
+          },{
+            name:'Chicken Pesto',
+            url: 'https://studenteats.co.uk/recipes/pasta/chicken-pesto-pasta-with-roasted-tomatoes-5598.html',
+            properties: [
+              { name:'Protein', value:'Chicken' }, { name:'Starch', value:'Noodles' },
+              { name:'Seasoning', value:'Pesto Sauce' }, { name:'Fruit', value:'Tomatoes' },
+              {name:'Seasoning', value:'Garlic Powder'}, {name:'Dairy', value:'Cheese'}
+            ]
+          },{
+            name:'Roasted Potatoes',
+            url: 'https://www.thekitchn.com/recipe-crispy-salt-amp-vinegar-potatoes-227532',
+            properties: [
+              { name:'Starch', value:'Potato' },
+              { name:'Seasoning', value:'White Vinegar' }, { name:'Seasoning', value:'Salt + Pepper' }
+
+            ]
+          },{
+            name:'Breadsticks',
+            url: 'http://sugarapron.com/2014/08/03/easy-cheesy-garlic-breadsticks/',
+            properties: [
+              { name:'Starch', value:'Pizza Crust' }, { name:'Dairy', value:'Cheese' },
+              { name:'Seasoning', value:'Basil' }, { name:'Seasoning', value:'Salt + Pepper' },
+              {name:'Dairy', value:'Butter'}
+            ]
+          },{
+            name:'Curry Drumsticks',
+            url: 'https://alittleyum.com/2010/04/07/curried-chicken-drumsticks-with-carrots/',
+            properties: [
+              { name:'Protein', value:'Drumsticks' }, { name:'Seasoning', value:'Curry Powder' },
+              { name:'Veggie', value:'Carrots' }, { name:'Starch', value:'Rice' }
+            ]
+          },{
+            name:'Carrot Cake',
+            url: 'https://mildlymeandering.com/carrot-cake-mug-cake/',
+            properties: [
+              { name:'Veggie', value:'Carrots' }, { name:'Dairy', value:'Milk' },
+              { name:'Seasoning', value:'Nutmeg' }, { name:'Seasoning', value:'Nutmeg' }
+            ]
+          },{
+            name:'Cajun Alfredo',
+            url:'https://tasty.co/recipe/cajun-chicken-alfredo',
+            properties: [
+              { name:'Starch', value:'Penne' }, { name:'Veggie', value:'Garlic' },
+              { name:'Protein', value:'Chicken' }, { name:'Seasoning', value:'Cajun' }
+            ]
+          },{
+            name:'Brownies',
+            url:'http://tgifridaysathome.blogspot.com/2012/10/brownie-obsession.html',
+            properties: [
+              { name:'Starch', value:'Brownie Mix' }, { name:'Dairy', value:'Ice Cream' },
+              { name:'Seasoning', value:'Caramel' }, { name:'Seasoning', value:'Nutmeg' }
+            ]
+          },{
+            name:'Asparagus',
+            url:'https://www.allrecipes.com/recipe/214931/oven-roasted-asparagus/',
+            properties: [
+              { name:'Veggie', value:'Asparagus' }, { name:'Veggie', value:'Garlic' },
+              { name:'Seasoning', value:'Salt + Pepper' }
+            ]
+          },{
+            name:'Beef Stroganoff',
+            url:'https://www.bettycrocker.com/recipes/classic-beef-stroganoff/c17a904f-a8f6-48ae-bedb-5b301a8ea317',
+            properties: [
+              { name:'Veggie', value:'Carrots' }, { name:'Dairy', value:'Milk' },
+              { name:'Seasoning', value:'Nutmeg' }, { name:'Seasoning', value:'Nutmeg' }
+            ]
+          },{
+            name:'Chicken StirFry',
+            url:'https://www.allrecipes.com/recipe/223382/chicken-stir-fry/',
+            properties: [
+              { name:'Veggie', value:'Carrots' }, { name:'Veggie', value:'Peppers' },
+              { name:'Seasoning', value:'Prepacked' }, { name:'Protein', value:'Chicken' },
+              { name:'Protein', value:'Snap Peas' }
+            ]
+          },{
+            name:'Chicken Burritos',
+            url:'https://www.tasteofhome.com/recipes/chicken-burritos',
+            properties: [
+              { name:'Starch', value:'Tortilla' }, { name:'Protein', value:'Chicken' },
+              { name:'Dairy', value:'Cheese' }, {name:'Seasoning', value:'Prepacked'}
+
+            ]
+          }
+        ];
+
+        service.getSampleData = function() {
+          return products;
+        };
+
+        return service;
+      });
+
+    })();
+  </script>
+ <link rel="stylesheet prefetch" href="https://ajax.googleapis.com/ajax/libs/angular_material/1.0.0/angular-material.min.css">
+</head>
+<body>
+
+  <header id="main-header">LunchBox</header>
+  <nav id="navbar">
+      <div>
+          <a href="http://www.pages.drexel.edu/~ch942/lunchbox-main.html">Home</a>
+          <a href="http://www.pages.drexel.edu/~ch942/aboutus.html">About Us</a>
+          <a href="http://www.pages.drexel.edu/~ch942/recipe.html">Fixed Recipes</a>
+      </div>
+  </nav>
+
+  <div ng-app='angularDemo' ng-cloak>
+    <md-toolbar layout-padding>
+      <h2>Choose Your Ingredients!</h2>
+    </md-toolbar>
+    <div layout="row" ng-controller="angularController as ctrl">
+      <div flex="20" class="sidebar" layout-padding>
+        <div ng-repeat="filter in Filters">
+          <h3 class="sort">{{filter.name}}</h3>
+          <ul class="sortoptions">
+            <li ng-repeat="option in filter.options">
+              <input type="checkbox" ng-model="option.IsIncluded" ng-checked="option.IsIncluded"> {{option.value}}
+              <span>({{option.count}})</span>
+            </li>
+          </ul>
+        </div>
+        <md-button class="md-raised" ng-click="ctrl.toggleAll($event, false)">Uncheck All</md-button>
+        <br/>
+        <md-button class="md-raised" ng-click="ctrl.toggleAll($event, true)">Check All</md-button>
+     </div>
+      <div flex="initial">
+        <md-button class="product" flex ng-repeat="fruit in Fruits | dynamicFilter:Filters:this" ng-href="{{fruit.url}}">
+          {{fruit.name}}
+        </md-button>
+      </div>
+    </div>
+  </div>
+</body>
+
+</html>

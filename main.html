@@ -1,0 +1,538 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+    <title>LUNCHBOX</title>
+    <link rel="shortcut icon" href="{Favicon}">
+    <link rel="alternate" type="application/rss+xml" href="{RSS}">
+{block:Description}<meta name="description" content="{MetaDescription}" />{/block:Description}
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/7.0.0/normalize.min.css">
+<!--fontawesome-->
+<link rel=stylesheet href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+<!-- filter scripts -->
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
+<script src="//unpkg.com/masonry-layout@4/dist/masonry.pkgd.min.js"></script>
+<script src="//unpkg.com/isotope-layout@3/dist/isotope.pkgd.min.js"></script>
+<script src="//unpkg.com/imagesloaded@4/imagesloaded.pkgd.min.js"></script>
+
+
+<script type="text/javascript">
+    $(document).ready(function() {
+        // init Isotope
+        var $grid = $('.grid').isotope({
+            itemSelector: '.grid-item',
+            masonry: {
+                columnWidth: 250,
+                fitWidth: true,
+                gutter: 3
+            },
+            hiddenStyle: {
+                opacity: 0
+            },
+            visibleStyle: {
+                opacity: 1
+            },
+            transitionDuration: '0.5s'
+        });
+        // layout Isotope after each image loads
+        $grid.imagesLoaded().progress(function() {
+            $grid.isotope('layout');
+        });
+        // store filter for each group
+        var filters = {};
+        $('.filters').on('click', '.button', function() {
+            var $this = $(this);
+            // get group key
+            var $buttonGroup = $this.parents('.button-group');
+            var filterGroup = $buttonGroup.attr('data-filter-group');
+            // set filter for group
+            filters[filterGroup] = $this.attr('data-filter');
+            // combine filters
+            var filterValue = concatValues(filters);
+            // set filter for Isotope
+            $grid.isotope({
+                filter: filterValue
+            });
+        });
+        // change is-checked class on buttons
+        $('.button-group').each(function(i, buttonGroup) {
+            var $buttonGroup = $(buttonGroup);
+            $buttonGroup.on('click', 'button', function() {
+                $buttonGroup.find('.is-checked').removeClass('is-checked');
+                $(this).addClass('is-checked');
+            });
+        });
+        // change size of item by toggling gigante class
+        $grid.on('click', '.grid-item', function() {
+            $(this).toggleClass('expand');
+            // trigger layout after item size changes
+            $grid.isotope('layout');
+        });
+    });
+    // flatten object by concatting values
+    function concatValues(obj) {
+        var value = '';
+        for (var prop in obj) {
+            value += obj[prop];
+        }
+        return value;
+    }
+</script>
+
+<script>
+    function goBack() {
+        window.history.back();
+    }
+</script>
+
+<style type="text/css">
+
+::-webkit-scrollbar{width: 6px;}
+::-webkit-scrollbar-thumb{background-color:#acacac; border-radius: 3px; }
+::-webkit-scrollbar-track{background-color:#f5f5f5}
+::-moz-selection{background-color:#acacac;color:#fff}
+::selection{background-color:#acacac;color:#fff}
+
+
+
+    *, figure {
+    	box-sizing: border-box;
+    	margin: 0;
+    	padding: 0;
+    	border: none;
+    	background: none;
+    }
+    
+
+    body {
+    	font-size: 13px;
+    	color: #1d1d1d;
+    	background: #f5f5f5;
+    	font-family: heebo, helvetica neue, helvetica, arial, sans-serif;
+    	overflow-x:hidden;
+    }
+    
+    header {
+    	font-size: 13px;
+    	position: absolute;
+    	top: 0;
+    	z-index: 99999;
+    	width: 100%;
+    	padding: 50px 75px;
+    	color: #fff;
+    	background: rgb(178, 189, 126);
+    }
+    
+    h1 {
+    	font-size: 30px;
+    }
+    
+    .desc {
+    	width: 40vw;
+    }
+    
+    h1, h2, h3, h4, h5, h6 {
+    	font-family: helvetica neue, helvetica, arial, heebo, sans-serif;
+    }
+    
+    .back {
+    	text-align: right;
+    	font-weight: bold;
+    	text-transform: uppercase;
+    	color: inherit;
+    	font-family: helvetica neue, helvetica, arial, heebo, sans-serif;
+    }
+    
+    nav {
+    	position: fixed;
+    	top: 0;
+    	width: 400px;
+    	height: 100%;
+    	margin-bottom: 7px;
+    	padding: 300px 75px 50px;
+    	color: #fff;
+        background-color: #87ab7d;
+    	background-size: auto 100% ;
+    	background-position:fixed
+    }
+    
+    h3 {
+    	letter-spacing: .5px;
+    	margin: 5px 0
+    }
+    
+    
+    .filters .button-group {
+    	margin: 20px 0 0;
+    }
+    
+    .filters button {
+    	font-family: heebo, helvetica neue, helvetica, arial, sans-serif;
+    	font-size: 13px;
+    	display: block;
+    	outline: none;
+    	color: inherit;
+    	padding: 1px 0
+    }
+    
+    .filters button:before {
+    	font-family: FontAwesome;
+    	display: inline-block;
+    	width: 15px;
+    	content: '\f096';
+    	vertical-align: middle;
+    	text-align: left;
+    	color: #fff;
+    	color: rgba(255, 255, 255, 0.7)
+    }
+    
+    .filters .button.is-checked::before {
+    	content: '\f046';
+    	color: #fff;
+    }
+    
+    .filters button:hover {
+    	cursor: pointer;
+    }
+    
+    main {
+    	margin-top: 200px;
+    	margin-left: 300px;
+    }
+    
+    .grid {
+    	line-height: 100%;
+    	position: fixed;
+    	top: 80px;
+    	margin: 0 auto;
+    	margin-bottom: 100px;
+    }
+    
+    .grid-item {
+    	float: left;
+    	width: 250px;
+    	height: auto;
+    	margin-bottom: 3px;
+    	cursor: zoom-in;
+    	box-shadow: 1px 1px 2px rgba(0, 0, 0, .1);
+    }
+    
+    figure {
+    	overflow: hidden;
+    	background: #bababa;
+    }
+    
+    .content {
+    	font-size: 14px;
+    	min-height: 60px;
+    	padding: 10px 10px 30px;
+    	background: #fff;
+    }
+    
+    .info a {
+    	font-weight: bold;
+    	text-decoration: none;
+    	color: inherit;
+    	background-image: linear-gradient(#fff 50%, #cecece 50%);
+    	background-repeat: repeat-x;
+    	background-position: 0 1.15em;
+    	background-size: 1em 2px;
+    }
+    
+    h2 {
+    	font-size: 18px;
+    	text-transform: uppercase;
+    }
+    
+    .name {
+    	font-family: helvetica neue, helvetica, arial, heebo, sans-serif;
+    	line-height: 15px;
+    }
+    
+    .expand figure img {
+    	-webkit-transform: scale(1.5);
+    	-ms-transform: scale(1.5);
+    	-o-transform: scale(1.5);
+    	-moz-transform: scale(1.5);
+    	transform: scale(1.5);
+    	opacity: .3;
+    }
+    
+    .grid-item img {
+    	float: left;
+    	width: 100%;
+    }
+    
+    .expand figure {
+    	height: 200px;
+    }
+    
+    
+    /*scale when hovering, but not on expand*/
+    
+    .grid-item:not(.expand) figure img {
+    	-webkit-transition: .4s;
+    	-o-transition: .4s;
+    	-moz-transition: .4s;
+    	transition: .4s;
+    	-webkit-transform: scale(1);
+    	-ms-transform: scale(1);
+    	-o-transform: scale(1);
+    	-moz-transform: scale(1);
+    	transform: scale(1);
+    }
+    
+    .grid-item:not(.expand) figure:hover img {
+    	-webkit-transform: scale(1.1);
+    	-ms-transform: scale(1.1);
+    	-o-transform: scale(1.1);
+    	-moz-transform: scale(1.1);
+    	transform: scale(1.1);
+    }
+    
+    
+    
+    .expand {
+    	z-index: 99999999;
+    	width: 502px;
+    }
+    
+    .info {
+    	font-size: 13px;
+    	line-height: 150%;
+    	display: none;
+    	margin: 15px 0;
+    	padding: 0 10px;
+    	text-align: justify;
+    	border-left: 1px solid #cecece;
+    }
+    
+    .expand .info {
+    	display: inline-block;
+    }
+    
+    .info p {
+    	padding: 5px 0;
+    }
+    
+    .info p:first-of-type {
+    	padding-top: 0;
+    }
+    
+    .info p:last-of-type {
+    	padding-bottom: 0;
+    }
+    
+    
+    
+    /*---------------------- color change magic ----------------------*/
+    
+    .orange figure {
+    	background: #b57f50;
+    }
+    
+    .blue figure {
+    	background: #b4d2ba;
+    }
+    
+    .green figure {
+    	background: #b2bd7e;
+    }
+    
+ 
+    #credit{line-height:100%;border-radius:50%;position:fixed;bottom:10px;right:10px;color:#fff;background:rgba(0,0,0,.2);padding:5px;width:20px;height:20px;overflow:hidden;font-size:10px;font-weight:100;white-space:nowrap;-moz-transition:all .6s ease-in-out;-ms-transition:all .6s ease-in-out;-o-transition:all .6s ease-in-out;-webkit-transition:all .6s ease-in-out;transition:all .6s ease-in-out}#credit:hover{background:#000;width:80px;border-radius:15px}#credit:before{font-size:10px;content:'\f292';font-family:FontAwesome;padding-right:5px}
+    
+
+</style>
+
+
+
+</head>
+
+<body>
+
+<!-----------------------------HEADER----------------------------->
+
+    <header>
+        <h1>LunchBox</h1>
+        <div class="desc">
+            this is the description of the application 
+        </div>
+    </header>
+
+<!-----------------------------SIDEBAR----------------------------->
+
+<nav data-0="padding-top:300px;overflow:hidden;" data-250="padding-top:70px; overflow:auto;">
+  <div class="filters">
+      
+    <!-- category one --> <!-- protein --> 
+    <div class="button-group" data-filter-group="protein">
+      <h3>protein</h3>
+      <button class="button" data-filter=".chicken">chicken</button>
+      <button class="button" data-filter=".beef">beef</button>
+      <button class="button" data-filter=".sausage">sausage</button>
+    </div>
+    
+    <!-- category two --> <!--sauces-->
+    <div class="button-group" data-filter-group="sauces">
+      <h3>sauces</h3>
+      <button class="button" data-filter=".pesto">pesto</button>
+      <button class="button" data-filter=".tomato_paste">tomato paste</button>
+      <button class="button" data-filter=".curry">curry</button>
+    </div>
+    
+    <!-- category three --> <!--starch-->
+    <div class="button-group" data-filter-group="starch">
+      <h3>starch</h3>
+      <button class="button" data-filter=".potatoes">potatoes</button>
+      <button class="button" data-filter=".pasta">pasta</button>
+      <button class="button" data-filter=".pizza_dough">pizza dough</button>
+
+    </div>
+    
+    <!-- category four --> <!--veggies--> 
+    <div class="button-group" data-filter-group="veggies">
+      <h3>veggies</h3>
+      <button class="button" data-filter=".asparagus">asparagus</button>
+      <button class="button" data-filter=".garlic">garlic</button>
+      <button class="button" data-filter=".carrots">carrots</button>
+      <button class="button" data-filter=".broccoli">broccoli</button>
+      <button class="button" data-filter=".spinach">spinach</button>
+        
+        <!-- category five --> <!--fruit--> 
+      <div class="button-group" data-filter-group="fruit">
+      <h3>fruit</h3>
+      <button class="button" data-filter=".apple">apple</button>
+      <button class="button" data-filter=".tomatoes">tomatoes</button>
+      </div>
+        
+    <!-- category six --> <!--dessert--> 
+      <div class="button-group" data-filter-group="dessert">
+      <h3>dessert</h3>
+      <button class="button" data-filter=".vanilla_ice_cream">vanilla ice cream</button>
+      </div>
+   
+  </div>
+</nav>
+
+<!---------------------------MAIN CONTENT--------------------------->
+
+<main> 
+<div class="grid">
+    <!---------------------------ORANGE IS NOODLES--------------------------->
+    <div class="grid-item pasta chicken sausage">
+    <figure><img src="cajun.jpg"></figure>
+    <div class="content">
+    <div class="name"> <h2> CAJUN CHICKEN </h2> </div>
+    <div class="info">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquam laudantium ea magnam pariatur autem, adipisci ipsa, neque hic reiciendis architecto recusandae minima aut ullam eaque perferendis. Debitis fugiat, ea facilis. <a href="#">hello link</a></div>
+    </div>
+    </div>
+
+    <div class="grid-item pasta chicken pesto tomatoes">
+    <figure><img src="pesto.jpg"></figure>
+    <div class="content">
+    <div class="name"> <h2> CHICKEN PESTO </h2> </div>
+    <div class="info"> boring pasta? no problem! add some flavorful ingredients to spruce up your dish <a href="https://studenteats.co.uk/recipes/pasta/chicken-pesto-pasta-with-roasted-tomatoes-5598.html">RECIPE</a></div>
+    </div>
+    </div>
+    
+    <div class="grid-item pasta tomato_paste spinach">
+    <figure><img src="spinach.jpg"></figure>
+    <div class="content">
+    <div class="name"> <h2> CREAMY TOMATO + SPINACH </h2> </div>
+    <div class="info">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquam laudantium ea magnam pariatur autem, adipisci ipsa, neque hic reiciendis architecto recusandae minima aut ullam eaque perferendis. Debitis fugiat, ea facilis. <a href="#">hello link</a></div>
+    </div>
+    </div>
+
+    <!---------------------------BLUE IS SIDES--------------------------->
+    <div class="grid-item potatoes">
+    <figure><img src="potatoes.jpg"></figure>
+    <div class="content">
+    <div class="name"> <h2> CRISPY SALT + VINEGAR FINGERLING POTATOES </h2> </div>
+    <div class="info">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquam laudantium ea magnam pariatur autem, adipisci ipsa, neque hic reiciendis architecto recusandae minima aut ullam eaque perferendis. Debitis fugiat, ea facilis.</div>
+    </div>
+    </div>
+    
+    <div class="grid-item pizza_dough garlic mozzarella">
+    <figure><img src="breadstick.jpg"></figure>
+    <div class="content">
+    <div class="name"> <h2>GARLIC BREADSTICKS</h2> </div>
+    <div class="info">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquam laudantium ea magnam pariatur autem, adipisci ipsa, neque hic reiciendis architecto recusandae minima aut ullam eaque perferendis. Debitis fugiat, ea facilis.</div>
+    </div>
+    </div>
+    
+    <div class="grid-item asparagus garlic">
+    <figure><img src="asparagus.jpg"></figure>
+    <div class="content">
+    <div class="name"> <h2>ROASTED ASPARAGUS</h2> </div>
+    <div class="info">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquam laudantium ea magnam pariatur autem, adipisci ipsa, neque hic reiciendis architecto recusandae minima aut ullam eaque perferendis. Debitis fugiat, ea facilis.</div>
+    </div>
+    </div>
+    
+     <div class="grid-item chicken carrots">
+    <figure><img src="curry.jpg"></figure>
+    <div class="content">
+    <div class="name"> <h2>CURRIED CHICKEN DRUMSTICKS W CARROTS</h2> </div>
+    <div class="info">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquam laudantium ea magnam pariatur autem, adipisci ipsa, neque hic reiciendis architecto recusandae minima aut ullam eaque perferendis. Debitis fugiat, ea facilis.</div>
+    </div>
+    </div>
+    
+    <!---------------------------GREEN IS MEAT--------------------------->
+    <div class="grid-item beef">
+    <figure><img src="tacos.jpg"></figure>
+    <div class="content">
+    <div class="name"><h2> BEEF TACOS </h2> </div>
+    <div class="info">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquam laudantium ea magnam pariatur autem, adipisci ipsa, neque hic reiciendis architecto recusandae minima aut ullam eaque perferendis. Debitis fugiat, ea facilis.</div>
+    </div>
+    </div>
+
+    <div class="grid-item pasta chicken broccoli">
+    <figure><img src="alfredo.jpg"></figure>
+    <div class="content">
+    <div class="name"><h2> FETTUCCINE ALFREDO W CHICKEN, BROCCOLI, BACON </h2> </div>
+    <div class="info">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquam laudantium ea magnam pariatur autem, adipisci ipsa, neque hic reiciendis architecto recusandae minima aut ullam eaque perferendis. Debitis fugiat, ea facilis.</div>
+    </div>
+    </div>
+    
+    <!---------------------------????? IS DESSERT--------------------------->
+    <div class="grid-item apple">
+    <figure><img src="apple.jpg"></figure>
+    <div class="content">
+    <div class="name"> <h2> APPLE SQUARES</h2> </div>
+    <div class="info">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquam laudantium ea magnam pariatur autem, adipisci ipsa, neque hic reiciendis architecto recusandae minima aut ullam eaque perferendis. Debitis fugiat, ea facilis.</div>
+    </div>
+    </div>
+    
+    <div class="grid-item carrots">
+    <figure><img src="carrot.jpg"></figure>
+    <div class="content">
+    <div class="name"> <h2> CARROT CAKE MUG CAKE</h2> </div>
+    <div class="info">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquam laudantium ea magnam pariatur autem, adipisci ipsa, neque hic reiciendis architecto recusandae minima aut ullam eaque perferendis. Debitis fugiat, ea facilis.</div>
+    </div>
+    </div>
+
+    <div class="grid-item vanilla_ice_cream">
+    <figure><img src="brownie.jpg"></figure>
+    <div class="content">
+    <div class="name"> <h2> BROWNIE OBSESSION</h2> </div>
+    <div class="info">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquam laudantium ea magnam pariatur autem, adipisci ipsa, neque hic reiciendis architecto recusandae minima aut ullam eaque perferendis. Debitis fugiat, ea facilis.</div>
+    </div>
+    </div>  
+</div>
+</main>
+
+
+<!-------------------------- END MAIN CONTENT --------------
+
+<!---script! don't touch=-->
+
+<script src=
+"https://cdnjs.cloudflare.com/ajax/libs/skrollr/0.6.30/skrollr.min.js" type=
+"text/javascript"></script> 
+<script type="text/javascript">
+    var s = skrollr.init();
+</script>
+
+</html>

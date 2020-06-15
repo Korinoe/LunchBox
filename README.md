@@ -13,7 +13,7 @@ LunchBox is a website application that makes it easier for people to find recipe
 * Possibly redesign UX/UI
 
 ## Timeline
-Hopeful time of completion to be July 20th 
+Done on July 15th, 2020
 
 ## Scope
 * Filtering System

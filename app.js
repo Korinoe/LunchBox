@@ -209,7 +209,7 @@
       },
       {
         name:'Red Curry Chicken',
-        img: 'coconutcurry',
+        img: 'img/coconutcurry.jpg',
         url:'https://www.allrecipes.com/recipe/261479/four-ingredient-red-curry-chicken/?internalSource=staff%20pick&referringId=1947&referringContentType=Recipe%20Hub',
         properties: [
           { name:'Starch', value:'Vermicelli Noodles' }, { name:'Veggie', value:'Peppers' },
@@ -218,17 +218,17 @@
         ]
       },{
         name:'Saucy Bean Baked Eggs',
-        img: 'bakedeggs.jpg',
+        img: 'img/bakedeggs.jpg',
         url:'https://www.bbcgoodfood.com/recipes/saucy-bean-baked-eggs',
         properties: [
           { name:'Starch', value:'Rye Bread' }, { name:'Protein', value:'Smoked Ham' },
           { name:'Veggie', value:'Spinach' }, { name:'Protein', value: 'Bean Salad'},
           { name:'Seasoning', value:'Prepacked'}, { name:'Protein', value:'Eggs'}, 
-          { name:'Fruit', value:'Tomatoes}
+          { name:'Fruit', value:'Tomatoes'}
         ]
       },{
         name:'Chipotle Bean Chili',
-        img: 'chipotlechili.jpg',
+        img: 'img/chipotlechili.jpg',
         url:'https://www.bbcgoodfood.com/recipes/chipotle-bean-chilli-baked-eggs',
         properties: [
           { name:'Starch', value:'Tortilla' }, { name:'Protein', value:'Eggs' },
@@ -238,7 +238,7 @@
         ]
       },{
         name:'Enchilada Casserole',
-        img: 'enchilada.jpg',
+        img: 'img/enchilada.jpg',
         url:'https://www.theseasonedmom.com/4-ingredient-healthy-chicken-enchilada-casserole/',
         properties: [
           { name:'Starch', value:'Tortilla' }, { name:'Protein', value:'Chicken' },
@@ -246,7 +246,7 @@
         ]
       },{
         name:'Lemon Chicken',
-        img: 'lemonchick.jpg',
+        img: 'img/lemonchick.jpg',
         url:'https://hostthetoast.com/5-ingredient-breaded-lemon-chicken/',
         properties: [
           { name:'Starch', value:'Breadcrumbs' }, { name:'Protein', value:'Chicken' },
@@ -254,33 +254,34 @@
         ]
       },{
         name:'Tomato Soup',
-        img: 'tomatosoup.png',
+        img: 'img/tomatosoup.jpg',
         url:'https://www.wholesomeyum.com/recipes/5-ingredient-roasted-tomato-soup-low-carb-gluten-free/',
         properties: [
           { name:'Fruit', value:'Tomatoes'}, { name:'Dairy', value:'Heavy Cream'}, 
-	  { name:'Veggie', value:'Basil'}, { name:'Seasoning', value:'Herbs de Provence}
-	]
+	        { name:'Veggie', value:'Basil'}, { name:'Seasoning', value:'Herbs de Provence'}
+	      ]
       },{
         name:'Bacon Asparagus Pasta',
-        img: 'bapasta.jpg',
+        img: 'img/bapasta.jpg',
         url:'https://www.gimmesomeoven.com/5-ingredient-bacon-asparagus-pasta-recipe/',
         properties: [
           { name:'Starch', value:'Pasta' }, { name:'Protein', value:'Bacon' },
           { name:'Dairy', value:'Cheese' }, {name:'Seasoning', value:'White Wine'},
-	  { name:'Veggie', value:'Asparagus'}
+	        { name:'Veggie', value:'Asparagus'}
+
         ]
       },{
         name:'Caprese Chicken',
-        img: 'capchick.jpg',
+        img: 'img/capchick.jpg',
         url:'https://www.seasonalcravings.com/five-ingredient-caprese-chicken/#wprm-recipe-container-5960',
         properties: [
           { name:'Veggie', value:'Basil' }, { name:'Protein', value:'Chicken' },
           { name:'Dairy', value:'Cheese' }, {name:'Seasoning', value:'Balsamic Syrup'},
-	  { name:'Fruit', value: 'Tomatoes}
+	        { name:'Fruit', value: 'Tomatoes'}
         ]
       },{
         name:'Chipotle Taquitos',
-        img: 'taquitos.png',
+        img: 'img/taquitos.jpg',
         url:'https://www.foodiecrush.com/chipotle-chicken-taquitos/',
         properties: [
           { name:'Starch', value:'Tortilla' }, { name:'Protein', value:'Chicken' },

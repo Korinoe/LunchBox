@@ -40,7 +40,8 @@
        </div>
         <div flex="initial">
           <md-button class="product" flex ng-repeat="fruit in Fruits | dynamicFilter:Filters:this" ng-href="{{fruit.url}}">
-            <img ng-src="{{fruit.img}}" style="width: 150px; height: 150px;">
+            <img ng-src="{{fruit.img}}" style="width: 200px; height: 210px;">
+            <br>
             {{fruit.name}} 
           </md-button>
         </div>

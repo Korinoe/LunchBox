@@ -196,7 +196,7 @@
         properties: [
           { name:'Veggie', value:'Carrots' }, { name:'Veggie', value:'Peppers' },
           { name:'Seasoning', value:'Prepacked' }, { name:'Protein', value:'Chicken' },
-          { name:'Protein', value:'Snap Peas' }
+          { name:'Veggie', value:'Snap Peas' }
         ]
       },{
         name:'Chicken Burritos',
@@ -207,79 +207,84 @@
           { name:'Dairy', value:'Cheese' }, {name:'Seasoning', value:'Prepacked'}
         ]
       },
-      //All Recipe after this point is TBA
       {
-        name:'Chicken StirFry',
-        img: 'LunchBox-logo.png',
-        url:'https://www.allrecipes.com/recipe/223382/chicken-stir-fry/',
+        name:'Red Curry Chicken',
+        img: 'coconutcurry',
+        url:'https://www.allrecipes.com/recipe/261479/four-ingredient-red-curry-chicken/?internalSource=staff%20pick&referringId=1947&referringContentType=Recipe%20Hub',
         properties: [
-          { name:'Veggie', value:'Carrots' }, { name:'Veggie', value:'Peppers' },
-          { name:'Seasoning', value:'Prepacked' }, { name:'Protein', value:'Chicken' },
-          { name:'Protein', value:'Snap Peas' }
+          { name:'Starch', value:'Vermicelli Noodles' }, { name:'Veggie', value:'Peppers' },
+          { name:'Seasoning', value:'Thai Curry Sauce' }, { name:'Protein', value:'Chicken' },
+          { name:'Dairy', value:'Coconut Milk' }
         ]
       },{
-        name:'Chicken Burritos',
-        img: 'LunchBox-logo.png',
-        url:'https://www.tasteofhome.com/recipes/chicken-burritos',
+        name:'Saucy Bean Baked Eggs',
+        img: 'bakedeggs.jpg',
+        url:'https://www.bbcgoodfood.com/recipes/saucy-bean-baked-eggs',
         properties: [
-          { name:'Starch', value:'Tortilla' }, { name:'Protein', value:'Chicken' },
-          { name:'Dairy', value:'Cheese' }, {name:'Seasoning', value:'Prepacked'}
+          { name:'Starch', value:'Rye Bread' }, { name:'Protein', value:'Smoked Ham' },
+          { name:'Veggie', value:'Spinach' }, { name:'Protein', value: 'Bean Salad'},
+          { name:'Seasoning', value:'Prepacked'}, { name:'Protein', value:'Eggs'}, 
+          { name:'Fruit', value:'Tomatoes}
         ]
       },{
-        name:'Chicken Burritos',
-        img: 'LunchBox-logo.png',
-        url:'https://www.tasteofhome.com/recipes/chicken-burritos',
+        name:'Chipotle Bean Chili',
+        img: 'chipotlechili.jpg',
+        url:'https://www.bbcgoodfood.com/recipes/chipotle-bean-chilli-baked-eggs',
         properties: [
-          { name:'Starch', value:'Tortilla' }, { name:'Protein', value:'Chicken' },
-          { name:'Dairy', value:'Cheese' }, {name:'Seasoning', value:'Prepacked'}
+          { name:'Starch', value:'Tortilla' }, { name:'Protein', value:'Eggs' },
+          { name:'Protein', value:'Black Beans' }, {name:'Protein', value:'Mixed Beans'},
+          { name:'Seasoning', value:'Chipotle Paste'}, {name:'Seasoning', value:'Corander Leaves'},
+          { name:'Fruit', value:'Tomatoes'} 
         ]
       },{
-        name:'Chicken Burritos',
-        img: 'LunchBox-logo.png',
-        url:'https://www.tasteofhome.com/recipes/chicken-burritos',
+        name:'Enchilada Casserole',
+        img: 'enchilada.jpg',
+        url:'https://www.theseasonedmom.com/4-ingredient-healthy-chicken-enchilada-casserole/',
         properties: [
           { name:'Starch', value:'Tortilla' }, { name:'Protein', value:'Chicken' },
-          { name:'Dairy', value:'Cheese' }, {name:'Seasoning', value:'Prepacked'}
+          { name:'Dairy', value:'Cheese' }, {name:'Seasoning', value:'Enchilada Sauce'}
         ]
       },{
-        name:'Chicken Burritos',
-        img: 'LunchBox-logo.png',
-        url:'https://www.tasteofhome.com/recipes/chicken-burritos',
+        name:'Lemon Chicken',
+        img: 'lemonchick.jpg',
+        url:'https://hostthetoast.com/5-ingredient-breaded-lemon-chicken/',
         properties: [
-          { name:'Starch', value:'Tortilla' }, { name:'Protein', value:'Chicken' },
-          { name:'Dairy', value:'Cheese' }, {name:'Seasoning', value:'Prepacked'}
+          { name:'Starch', value:'Breadcrumbs' }, { name:'Protein', value:'Chicken' },
+          { name:'Fruit', value:'Lemon' }, {name:'Seasoning', value:'Lemon Pepper'}
         ]
       },{
-        name:'Chicken Burritos',
-        img: 'LunchBox-logo.png',
-        url:'https://www.tasteofhome.com/recipes/chicken-burritos',
+        name:'Tomato Soup',
+        img: 'tomatosoup.png',
+        url:'https://www.wholesomeyum.com/recipes/5-ingredient-roasted-tomato-soup-low-carb-gluten-free/',
         properties: [
-          { name:'Starch', value:'Tortilla' }, { name:'Protein', value:'Chicken' },
-          { name:'Dairy', value:'Cheese' }, {name:'Seasoning', value:'Prepacked'}
+          { name:'Fruit', value:'Tomatoes'}, { name:'Dairy', value:'Heavy Cream'}, 
+	  { name:'Veggie', value:'Basil'}, { name:'Seasoning', value:'Herbs de Provence}
+	]
+      },{
+        name:'Bacon Asparagus Pasta',
+        img: 'bapasta.jpg',
+        url:'https://www.gimmesomeoven.com/5-ingredient-bacon-asparagus-pasta-recipe/',
+        properties: [
+          { name:'Starch', value:'Pasta' }, { name:'Protein', value:'Bacon' },
+          { name:'Dairy', value:'Cheese' }, {name:'Seasoning', value:'White Wine'},
+	  { name:'Vaggie', value:'Asparagus'}
         ]
       },{
-        name:'Chicken Burritos',
-        img: 'LunchBox-logo.png',
-        url:'https://www.tasteofhome.com/recipes/chicken-burritos',
+        name:'Caprese Chicken',
+        img: 'capchick.jpg',
+        url:'https://www.seasonalcravings.com/five-ingredient-caprese-chicken/#wprm-recipe-container-5960',
         properties: [
-          { name:'Starch', value:'Tortilla' }, { name:'Protein', value:'Chicken' },
-          { name:'Dairy', value:'Cheese' }, {name:'Seasoning', value:'Prepacked'}
+          { name:'Veggie', value:'Basil' }, { name:'Protein', value:'Chicken' },
+          { name:'Dairy', value:'Cheese' }, {name:'Seasoning', value:'Balsamic Syrup'},
+	  { name:'Fruit', value: 'Tomatoes}
         ]
       },{
-        name:'Chicken Burritos',
-        img: 'LunchBox-logo.png',
-        url:'https://www.tasteofhome.com/recipes/chicken-burritos',
+        name:'Chipotle Taquitos',
+        img: 'taquitos.png',
+        url:'https://www.foodiecrush.com/chipotle-chicken-taquitos/',
         properties: [
           { name:'Starch', value:'Tortilla' }, { name:'Protein', value:'Chicken' },
-          { name:'Dairy', value:'Cheese' }, {name:'Seasoning', value:'Prepacked'}
-        ]
-      },{
-        name:'Chicken Burritos',
-        img: 'LunchBox-logo.png',
-        url:'https://www.tasteofhome.com/recipes/chicken-burritos',
-        properties: [
-          { name:'Starch', value:'Tortilla' }, { name:'Protein', value:'Chicken' },
-          { name:'Dairy', value:'Cheese' }, {name:'Seasoning', value:'Prepacked'}
+          { name:'Dairy', value:'Cheese' }, {name:'Veggie', value:'Chipotle Peppers'}
         ]
       }
     ];

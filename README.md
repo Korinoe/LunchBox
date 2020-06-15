@@ -21,6 +21,6 @@ Done on July 15th, 2020
 * Database to Store Recipes
 
 ## Links to Pages
-[Main Page](http://www.pages.drexel.edu/~ch942/lunchbox-main.html)  
-[About Us](http://www.pages.drexel.edu/~ch942/aboutus.html)  
-[Recipe Page](http://www.pages.drexel.edu/~ch942/recipe.html)  
+[Main Page](http://www.pages.drexel.edu/~ch942/lunchbox/lunchbox-main.html)  
+[About Us](http://www.pages.drexel.edu/~ch942/lunchbox/aboutus.html)  
+[Recipe Page](http://www.pages.drexel.edu/~ch942/lunchbox/recipe.html)  

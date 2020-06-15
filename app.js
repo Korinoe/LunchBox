@@ -100,7 +100,7 @@
         url: 'https://juliasalbum.com/creamy-broccoli-chicken-and-bacon-pasta-recipe/',
         properties: [
           { name:'Starch', value:'Noodles' }, { name:'Dairy', value:'Milk' },
-          { name:'Dairy', value:'Heavy Cream' }, { name:'Dairy', value:'Chese' },
+          { name:'Dairy', value:'Heavy Cream' }, { name:'Dairy', value:'Cheese' },
           { name:'Veggie', value:'Broccoli'}, { name: 'Protein', value: 'Bacon'},
           { name:'Veggie', value: 'Garlic'}, {name: 'Seasoning', value: 'Salt + Pepper'},
           { name:'Protein', value: 'Chicken'}
@@ -267,7 +267,7 @@
         properties: [
           { name:'Starch', value:'Pasta' }, { name:'Protein', value:'Bacon' },
           { name:'Dairy', value:'Cheese' }, {name:'Seasoning', value:'White Wine'},
-	  { name:'Vaggie', value:'Asparagus'}
+	  { name:'Veggie', value:'Asparagus'}
         ]
       },{
         name:'Caprese Chicken',
